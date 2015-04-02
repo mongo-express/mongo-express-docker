@@ -6,6 +6,7 @@ How to run this container
 -------------------------
 
 	docker run -it --rm \
+		--name mongo-express \
 		--link NAME_OF_MONGODB_CONTAINER:mongo \
 		knickers/mongo-express "$@"
 
