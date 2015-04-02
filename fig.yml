@@ -1,0 +1,4 @@
+web:
+    build: .
+    working_dir: /node_modules/mongo-express
+    command: node app
