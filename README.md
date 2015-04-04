@@ -1,9 +1,8 @@
 # mongo-express
 
-A dockerized mongo-express for viewing mongoDB in the browser
+A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for viewing mongoDB in the browser
 
-How to run this container
--------------------------
+## How to run this container
 
 	docker run -it --rm \
 		--name mongo-express \
@@ -11,3 +10,10 @@ How to run this container
 		knickers/mongo-express
 
 `--link` is the key here, where you link your mongoDB container into the mongo-express container.
+
+If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at `mongo-express.docker`
+
+### Note from the mongo-express developers:
+
+> JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
+> **mongo-express should only be used privately for development purposes.**
