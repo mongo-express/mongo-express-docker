@@ -11,7 +11,9 @@ A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for vie
 
 `--link` is the key here, where you link your mongoDB container into the mongo-express container.
 
-If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at `http://mongo-express.docker:8081`
+If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at:
+
+`http://mongo-express.docker:8081`
 
 ### Note from the mongo-express developers:
 
