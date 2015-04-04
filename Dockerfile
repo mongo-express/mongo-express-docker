@@ -10,7 +10,7 @@ RUN sed -r \
 	-e "s/(server:) 'localhost'/\1 'mongo'/" \
 	-e "s/(adminUsername:) 'admin'/\1 ''/" \
 	-e "s/(adminPassword:) 'pass'/\1 ''/" \
-	< config.default.js > config.js
+	config.default.js > config.js
 
 EXPOSE 8081
 CMD ["node", "app"]
