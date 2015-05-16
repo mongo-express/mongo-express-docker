@@ -19,4 +19,4 @@ If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this cont
 
 > JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
 
-> **mongo-express should only be used privately for development purposes.**
+> ### mongo-express should only be used privately for development purposes.
