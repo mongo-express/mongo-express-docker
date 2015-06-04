@@ -6,11 +6,13 @@ RUN npm install mongo-express@$MONGO_EXPRESS
 
 WORKDIR /node_modules/mongo-express
 
-RUN sed -r \
-	-e "s/(server:) 'localhost'/\1 'mongo'/" \
-	-e "s/(adminUsername:) 'admin'/\1 ''/" \
-	-e "s/(adminPassword:) 'pass'/\1 ''/" \
-	config.default.js > config.js
+ENV WEB_USER 'user'
+ENV WEB_PASS 'pass'
+ENV ADMIN_USER ''
+ENV ADMIN_PASS ''
+
+COPY docker-entrypoint.sh ./
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 EXPOSE 8081
 CMD ["node", "app"]
