@@ -29,8 +29,7 @@ WEB_PASS     | 'pass'    | mongo-express web console password
 	docker run -it --rm \
 		--name mongo-express \
 		--link web_db_1:mongo \
-		-e ADMIN_USER="root" \
-		-e ADMIN_PASS="correct horse battery staple" \
+		-e EDITOR_THEME="ambiance" \
 		knickers/mongo-express
 
 If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at:
