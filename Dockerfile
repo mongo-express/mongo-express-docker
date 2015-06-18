@@ -6,10 +6,11 @@ RUN npm install mongo-express@$MONGO_EXPRESS
 
 WORKDIR /node_modules/mongo-express
 
-ENV WEB_USER 'user'
-ENV WEB_PASS 'pass'
-ENV ADMIN_USER ''
-ENV ADMIN_PASS ''
+ENV WEB_USER="user"
+ENV WEB_PASS="pass"
+ENV ADMIN_USER=""
+ENV ADMIN_PASS=""
+ENV MONGO_PORT="27017"
 
 COPY docker-entrypoint.sh ./
 ENTRYPOINT ["./docker-entrypoint.sh"]
