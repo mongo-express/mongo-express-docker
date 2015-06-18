@@ -15,13 +15,13 @@ A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for vie
 
 Environment variables can be passed to the `run` command for configuring your MongoDB instance
 
-Name | Default | Description
-----------------------------
-MONGO_PORT | 27017 | MongoDB port
-ADMIN_USER | '' | MongoDB admin username
-ADMIN_PASS | '' | MongoDB admin password
-WEB_USER | 'user' | mongo-express web console username
-WEB_PASS | 'pass' | mongo-express web console password
+   Name    | Default | Description
+-----------|---------|------------
+MONGO_PORT |  27017  | MongoDB port
+ADMIN_USER |   ''    | MongoDB admin username
+ADMIN_PASS |   ''    | MongoDB admin password
+ WEB_USER  | 'user'  | mongo-express web console username
+ WEB_PASS  | 'pass'  | mongo-express web console password
 
 #### Example
 
