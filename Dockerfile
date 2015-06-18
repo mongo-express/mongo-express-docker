@@ -11,6 +11,7 @@ ENV WEB_PASS="pass"
 ENV ADMIN_USER=""
 ENV ADMIN_PASS=""
 ENV MONGO_PORT="27017"
+ENV EDITOR_THEME="default"
 
 COPY docker-entrypoint.sh ./
 ENTRYPOINT ["./docker-entrypoint.sh"]

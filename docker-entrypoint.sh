@@ -8,6 +8,7 @@ sed -r \
 	-e "s/(password:) 'pass'/\1 '$WEB_PASS'/" \
 	-e "s/(adminUsername:) 'admin'/\1 '$ADMIN_USER'/" \
 	-e "s/(adminPassword:) 'pass'/\1 '$ADMIN_PASS'/" \
+	-e "s/(editorTheme:) \"rubyblue\"/\1 '$EDITOR_THEME'/" \
 	config.default.js > config.js
 
 exec "$@"
