@@ -17,12 +17,12 @@ Environment variables can be passed to the `run` command for configuring your Mo
 
     Name     |  Default  | Description
 -------------|-----------|------------
-MONGO_PORT   | 27017     | MongoDB port
 ADMIN_USER   | ''        | MongoDB admin username
 ADMIN_PASS   | ''        | MongoDB admin password
+EDITOR_THEME | 'default' | mongo-express editor color theme [more](http://codemirror.net/demo/theme.html)
+MONGO_PORT   | 27017     | MongoDB port
 WEB_USER     | 'user'    | mongo-express web console username
 WEB_PASS     | 'pass'    | mongo-express web console password
-EDITOR_THEME | 'default' | mongo-express editor color theme [more](http://codemirror.net/demo/theme.html)
 
 #### Example
 
