@@ -1,6 +1,6 @@
 # mongo-express
 
-A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for viewing mongoDB in the browser
+A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for viewing MongoDB in the browser
 
 ## How to run this container
 
@@ -9,17 +9,28 @@ A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for vie
 		--link NAME_OF_MONGODB_CONTAINER:mongo \
 		knickers/mongo-express
 
-`--link` is the key here, where you link your mongoDB container into the mongo-express container.
+`--link` is the key here, where you link your MongoDB container into the mongo-express container.
 
 ### Additional configuration Options
 
-Additional environment variables can be passed in to configure your Mongo instance
+Environment variables can be passed to the `run` command for configuring your MongoDB instance
 
-	-e ADMIN_USER="Mongo admin username"
-	-e ADMIN_PASS="Mongo admin password"
-	-e WEB_USER="mongo-express web console username"
-	-e WEB_PASS="mongo-express web console password"
-	-e MONGO_PORT="If mongo is running on a non-standard port (27017)"
+Name | Default | Description
+----------------------------
+MONGO_PORT | 27017 | MongoDB port
+ADMIN_USER | '' | MongoDB admin username
+ADMIN_PASS | '' | MongoDB admin password
+WEB_USER | 'user' | mongo-express web console username
+WEB_PASS | 'pass' | mongo-express web console password
+
+#### Example
+
+	docker run -it --rm \
+		--name mongo-express \
+		--link web_db_1:mongo \
+		-e ADMIN_USER="root" \
+		-e ADMIN_PASS="correct horse battery staple" \
+		knickers/mongo-express
 
 If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at:
 
