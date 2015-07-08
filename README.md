@@ -15,7 +15,7 @@ A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for vie
 
 Environment variables can be passed to the `run` command for configuring your MongoDB instance
 
-	    Name     |  Default  | Description
+	Name         | Default   | Description
 	-------------|-----------|------------
 	ADMIN_USER   | ''        | MongoDB admin username
 	ADMIN_PASS   | ''        | MongoDB admin password
