@@ -10,21 +10,22 @@ RUN set -x \
 	&& tini -h \
 	&& apt-get purge --auto-remove -y ca-certificates curl
 
-ENV MONGO_EXPRESS 0.20.0
+ENV MONGO_EXPRESS 0.23.2
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
 WORKDIR /node_modules/mongo-express
 
-ENV WEB_USER="user"
-ENV WEB_PASS="pass"
-ENV ADMIN_USER=""
-ENV ADMIN_PASS=""
-ENV MONGO_PORT="27017"
-ENV EDITOR_THEME="default"
+RUN sed -r \
+	-e "s/(adminUsername:) ''/\1 process.env.ME_CONFIG_MONGODB_ADMINUSERNAME || ''/" \
+	-e "s/(adminPassword:) ''/\1 process.env.ME_CONFIG_MONGODB_ADMINPASSWORD || ''/" \
+	-e "s/(useBasicAuth:) true/\1 process.env.ME_CONFIG_BASICAUTH_USERNAME != ''/" \
+	-e "s/(editorTheme:) 'rubyblue'/\1 process.env.ME_CONFIG_OPTIONS_EDITORTHEME || 'default'/" \
+	config.default.js > config.js
 
-COPY docker-entrypoint.sh ./
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENV ME_CONFIG_MONGODB_SERVER="mongo"
+ENV ME_CONFIG_BASICAUTH_USERNAME=""
+ENV ME_CONFIG_BASICAUTH_PASSWORD=""
 
 EXPOSE 8081
 CMD ["tini", "--", "node", "app"]
