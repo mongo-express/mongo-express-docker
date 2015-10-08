@@ -30,7 +30,7 @@ Environment variables can be passed to the `run` command for configuring your Mo
 	docker run -it --rm \
 		--name mongo-express \
 		--link web_db_1:mongo \
-		-e EDITOR_THEME="ambiance" \
+		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
 		knickers/mongo-express
 
 If you have [tianon/rawdns](https://github.com/tianon/rawdns) running, this container will be accessible at:
