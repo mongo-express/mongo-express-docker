@@ -22,7 +22,8 @@ Environment variables can be passed to the `run` command for configuring your Mo
 	ME_CONFIG_MONGODB_ADMINUSERNAME | ''        | MongoDB admin username
 	ME_CONFIG_MONGODB_ADMINPASSWORD | ''        | MongoDB admin password
 	ME_CONFIG_MONGODB_PORT          | 27017     | MongoDB port
-	ME_CONFIG_MONGODB_SERVER        | 'mongo'   | MongoDB container name
+	ME_CONFIG_MONGODB_SERVER        | 'mongo'   | MongoDB container name. (the config file default is `localhost`)
+	ME_CONFIG_REQUEST_SIZE          | '100kb'   | Used to configure maximum mongo update payload size. CRUD operations above this size will fail due to restrictions in [body-parser](https://www.npmjs.com/package/body-parser).
 	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default' | mongo-express editor color theme [more here](http://codemirror.net/demo/theme.html)
 
 #### Example
