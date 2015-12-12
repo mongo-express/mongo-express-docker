@@ -18,6 +18,7 @@ WORKDIR /node_modules/mongo-express
 
 RUN cp config.default.js config.js
 
+ENV ME_CONFIG_EDITORTHEME="default"
 ENV ME_CONFIG_MONGODB_SERVER="mongo"
 ENV ME_CONFIG_BASICAUTH_USERNAME=""
 ENV ME_CONFIG_BASICAUTH_PASSWORD=""
