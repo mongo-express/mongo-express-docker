@@ -25,7 +25,7 @@ Environment variables can be passed to the `run` command for configuring your mo
 	ME_CONFIG_MONGODB_PORT          | 27017     | MongoDB port
 	ME_CONFIG_MONGODB_SERVER        | 'mongo'   | MongoDB container name
 	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default' | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
-	ME_CONFIG_REQUEST_SIZE          | '100kb'   | Maximum payload size. CRUD operations above this size will fail. [body-parser](https://www.npmjs.com/package/body-parser)
+	ME_CONFIG_REQUEST_SIZE          | '100kb'   | Maximum payload size. CRUD operations above this size will fail, [body-parser](https://www.npmjs.com/package/body-parser).
 
 #### Example
 
