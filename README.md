@@ -1,8 +1,10 @@
-# mongo-express
+mongo-express
+=============
 
 A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for viewing MongoDB in the browser
 
-## How to run this container
+How to run this container
+-------------------------
 
 	docker run -it --rm \
 		--name mongo-express \
@@ -24,7 +26,7 @@ Environment variables can be passed to the `run` command for configuring your Mo
 	ME_CONFIG_MONGODB_PORT          | 27017     | MongoDB port
 	ME_CONFIG_MONGODB_SERVER        | 'mongo'   | MongoDB container name. (the config file default is `localhost`)
 	ME_CONFIG_REQUEST_SIZE          | '100kb'   | Used to configure maximum mongo update payload size. CRUD operations above this size will fail due to restrictions in [body-parser](https://www.npmjs.com/package/body-parser).
-	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default' | mongo-express editor color theme [more here](http://codemirror.net/demo/theme.html)
+	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default' | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
 
 #### Example
 
