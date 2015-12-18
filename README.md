@@ -1,10 +1,8 @@
-mongo-express
-=============
+### mongo-express
 
 A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for managing a MongoDB database in the browser.
 
-How to run this container
--------------------------
+### How to run this container
 
 	docker run -it --rm \
 		--link NAME_OF_MONGODB_CONTAINER:mongo \
@@ -12,7 +10,7 @@ How to run this container
 
 `--link` is the key here, where you link your MongoDB container into the mongo-express container.
 
-### Additional configuration Options
+#### Additional configuration Options
 
 Environment variables can be passed to the `run` command for configuring your mongo-express container
 
