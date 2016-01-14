@@ -32,6 +32,7 @@ Environment variables can be passed to the `run` command for configuring your mo
 	docker run -it --rm \
 		--name mongo-express \
 		--link web_db_1:mongo \
+		-p 8081:8081 \
 		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
 		knickers/mongo-express
 
