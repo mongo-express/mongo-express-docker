@@ -6,6 +6,7 @@ A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for man
 
 	docker run -it --rm \
 		--link NAME_OF_MONGODB_CONTAINER:mongo \
+		-p 8081:8081 \
 		knickers/mongo-express
 
 `--link` is the key here, where you link your MongoDB container into the mongo-express container.
@@ -18,6 +19,7 @@ Environment variables can be passed to the `run` command for configuring your mo
 	--------------------------------|-----------|------------
 	ME_CONFIG_BASICAUTH_USERNAME    | ''        | mongo-express web console username
 	ME_CONFIG_BASICAUTH_PASSWORD    | ''        | mongo-express web console password
+	ME_CONFIG_MONGODB_ENABLE_ADMIN  | true      | MongoDB admin username
 	ME_CONFIG_MONGODB_ADMINUSERNAME | ''        | MongoDB admin username
 	ME_CONFIG_MONGODB_ADMINPASSWORD | ''        | MongoDB admin password
 	ME_CONFIG_MONGODB_PORT          | 27017     | MongoDB port
