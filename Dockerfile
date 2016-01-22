@@ -1,4 +1,4 @@
-FROM node:0.12-slim
+FROM node:5.4.1-slim
 
 ENV TINI_VERSION 0.5.0
 RUN set -x \
@@ -10,7 +10,7 @@ RUN set -x \
 	&& tini -h \
 	&& apt-get purge --auto-remove -y ca-certificates curl
 
-ENV MONGO_EXPRESS 0.29.13
+ENV MONGO_EXPRESS 0.29.20
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
