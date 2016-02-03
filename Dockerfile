@@ -10,7 +10,7 @@ RUN set -x \
 	&& tini -h \
 	&& apt-get purge --auto-remove -y ca-certificates curl
 
-ENV MONGO_EXPRESS 0.30.4
+ENV MONGO_EXPRESS 0.30.6
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
