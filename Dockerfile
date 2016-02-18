@@ -1,5 +1,7 @@
 FROM node:5.4.1-slim
 
+MAINTAINER Nick Cox <nickcox1008@gmail.com>
+
 ENV TINI_VERSION 0.5.0
 RUN set -x \
 	&& apt-get update && apt-get install -y ca-certificates curl \
