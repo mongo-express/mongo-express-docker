@@ -2,15 +2,31 @@ FROM node:5.4.1-slim
 
 MAINTAINER Nick Cox <nickcox1008@gmail.com>
 
-ENV TINI_VERSION 0.5.0
+# grab tini for signal processing and zombie killing
+ENV TINI_VERSION 0.9.0
 RUN set -x \
 	&& apt-get update && apt-get install -y ca-certificates curl \
 		--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -fSL "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini" -o /usr/local/bin/tini \
+	&& curl -fSL "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini.asc" -o /usr/local/bin/tini.asc \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
+	&& gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
+	&& rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
 	&& chmod +x /usr/local/bin/tini \
 	&& tini -h \
-	&& apt-get purge --auto-remove -y ca-certificates curl
+	&& apt-get purge --auto-remove -y ca-certificates curl \
+	&& rm -rf /var/lib/apt/lists/*
+
+EXPOSE 8081
+
+# override some config defaults with values that will work better for docker
+ENV ME_CONFIG_EDITORTHEME="default"
+ENV ME_CONFIG_MONGODB_SERVER="mongo"
+ENV ME_CONFIG_MONGODB_ENABLE_ADMIN="true"
+ENV ME_CONFIG_BASICAUTH_USERNAME=""
+ENV ME_CONFIG_BASICAUTH_PASSWORD=""
+ENV VCAP_APP_HOST="0.0.0.0"
 
 ENV MONGO_EXPRESS 0.30.17
 
@@ -20,12 +36,4 @@ WORKDIR /node_modules/mongo-express
 
 RUN cp config.default.js config.js
 
-ENV ME_CONFIG_EDITORTHEME="default"
-ENV ME_CONFIG_MONGODB_SERVER="mongo"
-ENV ME_CONFIG_MONGODB_ENABLE_ADMIN="true"
-ENV ME_CONFIG_BASICAUTH_USERNAME=""
-ENV ME_CONFIG_BASICAUTH_PASSWORD=""
-ENV VCAP_APP_HOST="0.0.0.0"
-
-EXPOSE 8081
 CMD ["tini", "--", "node", "app"]
