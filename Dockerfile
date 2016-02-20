@@ -1,7 +1,5 @@
 FROM node:5.4.1-slim
 
-MAINTAINER Nick Cox <nickcox1008@gmail.com>
-
 # grab tini for signal processing and zombie killing
 ENV TINI_VERSION 0.9.0
 RUN set -x \
