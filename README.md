@@ -1,44 +1,53 @@
-### mongo-express
+# What is mongo-express?
+
+mongo-express is a web-based MongoDB admin interface written in Node.js, Express.js, and Bootstrap3.
+
+> [github.com/mongo-express](https://github.com/mongo-express/mongo-express)
+
+![logo](https://raw.githubusercontent.com/mongo-express/mongo-express-docker/master/logo.png)
+
+# How to use this image
+
+```console
+$ docker run --link some_mongo_container:mongo -p 8081:8081 mongo-express
+```
+
+Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
+
+# Configuration
+
+Environment vairables are passed to the `run` command for configuring a mongo-express container.
+
+	Name                            | Default         | Description
+	--------------------------------|-----------------|------------
+	ME_CONFIG_BASICAUTH_USERNAME    | ''              | mongo-express web username
+	ME_CONFIG_BASICAUTH_PASSWORD    | ''              | mongo-express web password
+	ME_CONFIG_MONGODB_ENABLE_ADMIN  | 'true'          | Enable admin access to all databases. Send strings: `"true"` or `"false"`
+	ME_CONFIG_MONGODB_ADMINUSERNAME | ''              | MongoDB admin username
+	ME_CONFIG_MONGODB_ADMINPASSWORD | ''              | MongoDB admin password
+	ME_CONFIG_MONGODB_PORT          | 27017           | MongoDB port
+	ME_CONFIG_MONGODB_SERVER        | 'mongo'         | MongoDB container name
+	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default'       | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
+	ME_CONFIG_REQUEST_SIZE          | '100kb'         | Maximum payload size. CRUD operations above this size will fail in [body-parser](https://www.npmjs.com/package/body-parser).
+	ME_CONFIG_SITE_COOKIESECRET     | 'cookiesecret'  | String used by [cookie-parser middleware](https://www.npmjs.com/package/cookie-parser) to sign cookies.
+	ME_CONFIG_SITE_SESSIONSECRET    | 'sessionsecret' | String used to sign the session ID cookie by [express-session middleware](https://www.npmjs.com/package/express-session).
+	ME_CONFIG_SITE_SSL_ENABLED      | 'false'         | Enable SSL.
+	ME_CONFIG_SITE_SSL_CRT_PATH     | ''              | SSL certificate file.
+	ME_CONFIG_SITE_SSL_KEY_PATH     | ''              | SSL key file.
+
+The following is only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
+
+	Name                            | Default         | Description
+	--------------------------------|-----------------|------------
+	ME_CONFIG_MONGODB_AUTH_DATABASE | 'db'            | Database name
+	ME_CONFIG_MONGODB_AUTH_USERNAME | 'admin'         | Database username
+	ME_CONFIG_MONGODB_AUTH_PASSWORD | 'pass'          | Database password
 
 A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for managing a MongoDB database in the browser.
 
-### How to run this container
-
-	docker run -it --rm \
-		--link NAME_OF_MONGODB_CONTAINER:mongo \
-		-p 8081:8081 \
-		knickers/mongo-express
-
-`--link` is the key here, where you link your MongoDB container into the mongo-express container.
-
-#### Additional configuration Options
-
-Environment variables can be passed to the `run` command for configuring your mongo-express container
-
-	Name                            | Default   | Description
-	--------------------------------|-----------|------------
-	ME_CONFIG_BASICAUTH_USERNAME    | ''        | mongo-express web console username
-	ME_CONFIG_BASICAUTH_PASSWORD    | ''        | mongo-express web console password
-	ME_CONFIG_MONGODB_ENABLE_ADMIN  | true      | MongoDB admin username
-	ME_CONFIG_MONGODB_ADMINUSERNAME | ''        | MongoDB admin username
-	ME_CONFIG_MONGODB_ADMINPASSWORD | ''        | MongoDB admin password
-	ME_CONFIG_MONGODB_PORT          | 27017     | MongoDB port
-	ME_CONFIG_MONGODB_SERVER        | 'mongo'   | MongoDB container name
-	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default' | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
-	ME_CONFIG_REQUEST_SIZE          | '100kb'   | Maximum payload size. CRUD operations above this size will fail in [body-parser](https://www.npmjs.com/package/body-parser).
-
-#### Example
-
-	docker run -it --rm \
-		--name mongo-express \
-		--link web_db_1:mongo \
-		-p 8081:8081 \
-		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
-		knickers/mongo-express
-
 This container can be accessed at `http://localhost:8081`, or `http://mongo-express.docker:8081` if you have [tianon/rawdns](https://github.com/tianon/rawdns) running.
 
-### Note from the mongo-express developers:
+## Note:
 
 > JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
 
