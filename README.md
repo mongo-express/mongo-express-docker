@@ -14,6 +14,12 @@ $ docker run --link some_mongo_container:mongo -p 8081:8081 knickers/mongo-expre
 
 Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
 
+## Note:
+
+> JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
+
+> **mongo-express should only be used privately for development purposes.**
+
 # Configuration
 
 Environment vairables are passed to the `run` command for configuring a mongo-express container.
@@ -46,9 +52,3 @@ The following is only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for managing a MongoDB database in the browser.
 
 This container can be accessed at `http://localhost:8081`, or `http://mongo-express.docker:8081` if you have [tianon/rawdns](https://github.com/tianon/rawdns) running.
-
-## Note:
-
-> JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
-
-> **mongo-express should only be used privately for development purposes.**
