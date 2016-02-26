@@ -49,6 +49,15 @@ The following is only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 	ME_CONFIG_MONGODB_AUTH_USERNAME | 'admin'         | Database username
 	ME_CONFIG_MONGODB_AUTH_PASSWORD | 'pass'          | Database password
 
-A dockerized [mongo-express](https://github.com/andzdroid/mongo-express) for managing a MongoDB database in the browser.
+## Example
 
-This container can be accessed at `http://localhost:8081`, or `http://mongo-express.docker:8081` if you have [tianon/rawdns](https://github.com/tianon/rawdns) running.
+	docker run -it --rm \
+		--name mongo-express \
+		--link web_db_1:mongo \
+		-p 8081:8081 \
+		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
+		-e ME_CONFIG_BASICAUTH_USERNAME="user" \
+		-e ME_CONFIG_BASICAUTH_PASSWORD="strong password" \
+		knickers/mongo-express
+
+This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
