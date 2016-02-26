@@ -41,7 +41,7 @@ Environment vairables are passed to the `run` command for configuring a mongo-ex
 	ME_CONFIG_SITE_SSL_CRT_PATH     | ''              | SSL certificate file.
 	ME_CONFIG_SITE_SSL_KEY_PATH     | ''              | SSL key file.
 
-The following is only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
+The following are only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 
 	Name                            | Default         | Description
 	--------------------------------|-----------------|------------
@@ -57,7 +57,7 @@ The following is only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 		-p 8081:8081 \
 		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
 		-e ME_CONFIG_BASICAUTH_USERNAME="user" \
-		-e ME_CONFIG_BASICAUTH_PASSWORD="strong password" \
+		-e ME_CONFIG_BASICAUTH_PASSWORD="fairly long password" \
 		knickers/mongo-express
 
 This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
