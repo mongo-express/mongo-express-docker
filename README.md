@@ -14,11 +14,11 @@ $ docker run --link some_mongo_container:mongo -p 8081:8081 knickers/mongo-expre
 
 Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
 
-## Note:
+## Security Notice
 
-> JSON documents are parsed through a javascript virtual machine, so the web interface can be used for executing malicious javascript on a server.
+JSON documents are parsed through a javascript virtual machine, so the web interface can be used to execute malicious javascript on a server.
 
-> **mongo-express should only be used privately for development purposes.**
+**mongo-express should only be used privately for development purposes.**
 
 # Configuration
 
