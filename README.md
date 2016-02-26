@@ -2,7 +2,7 @@
 
 mongo-express is a web-based MongoDB admin interface written in Node.js, Express.js, and Bootstrap3.
 
-> [github.com/mongo-express](https://github.com/mongo-express/mongo-express)
+> [github.com/mongo-express/mongo-express](https://github.com/mongo-express/mongo-express)
 
 ![logo](https://raw.githubusercontent.com/mongo-express/mongo-express-docker/master/logo.png)
 
