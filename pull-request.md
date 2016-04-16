@@ -2,7 +2,7 @@
 
 ## One-time preparation
 
-From inside the forked repository, add a new `remote` pointing to the upstream repo with:
+From inside the forked repository, add a new `remote` pointing to the upstream repo:
 
 ```shell
 $ git remote add upstream git://github.com/upstream/repo.git
