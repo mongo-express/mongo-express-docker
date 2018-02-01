@@ -1,4 +1,4 @@
-FROM node:6.11-slim
+FROM node:8-slim
 
 # grab tini for signal processing and zombie killing
 ENV TINI_VERSION 0.9.0
@@ -26,7 +26,7 @@ ENV ME_CONFIG_EDITORTHEME="default" \
     ME_CONFIG_BASICAUTH_PASSWORD="" \
     VCAP_APP_HOST="0.0.0.0"
 
-ENV MONGO_EXPRESS 0.42.2
+ENV MONGO_EXPRESS 0.44.0
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
