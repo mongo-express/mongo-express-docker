@@ -30,8 +30,15 @@ ENV MONGO_EXPRESS 0.46.0
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
+ENV WAIT_PORT 0.2.2
+RUN npm install -g wait-port@$WAIT_PORT
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
 WORKDIR /node_modules/mongo-express
 
 RUN cp config.default.js config.js
 
-CMD ["tini", "--", "node", "app"]
+ENTRYPOINT [ "tini", "--", "/docker-entrypoint.sh"]
+CMD ["mongo-express"]
