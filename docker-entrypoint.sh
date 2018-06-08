@@ -21,7 +21,7 @@ function wait_tcp_port {
 
 # wait for the mongo serveur to be available
 echo Waiting for ${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT:-27017}...
-wait_tcp_port ${ME_CONFIG_MONGODB_SERVER} ${ME_CONFIG_MONGODB_PORT:-27017}
+wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}"
 
 # run mongo-express
 exec node app
