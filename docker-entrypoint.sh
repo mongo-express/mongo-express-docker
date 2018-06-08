@@ -19,7 +19,7 @@ function wait_tcp_port {
     exec 6>&-
 }
 
-# wait for the mongo serveur to be available
+# wait for the mongo server to be available
 echo Waiting for ${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT:-27017}...
 wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}"
 
