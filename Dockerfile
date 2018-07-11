@@ -32,7 +32,6 @@ ENV MONGO_EXPRESS 0.49.0
 RUN npm install mongo-express@$MONGO_EXPRESS
 
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /node_modules/mongo-express
 
