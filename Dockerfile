@@ -1,4 +1,4 @@
-FROM node:8-slim
+FROM node:8-stretch
 
 # grab tini for signal processing and zombie killing
 ENV TINI_VERSION 0.18.0
