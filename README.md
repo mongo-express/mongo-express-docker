@@ -22,7 +22,7 @@ JSON documents are parsed through a javascript virtual machine, so the web inter
 
 # Configuration
 
-Environment vairables are passed to the `run` command for configuring a mongo-express container.
+Environment variables are passed to the `run` command for configuring a mongo-express container.
 
 	Name                            | Default         | Description
 	--------------------------------|-----------------|------------
