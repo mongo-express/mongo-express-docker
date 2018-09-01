@@ -62,3 +62,30 @@ The following are only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 		mongo-express
 
 This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
+
+# Docker secrets
+
+As an alternative to passing sensitive information via environment variables \_FILE may be appended to  username and password environment variables, causing the initialization script to load the values for those variables from files present in the container. In particular, this can be used to load passwords from Docker secrets stored in /run/secrets/<secret_name> files.
+
+## Example
+```
+version: '3.5'
+services:
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD_FILE: /run/secrets/mongo_root_pass
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD_FILE: /run/secrets/mongo_express_admin_pass
+    secrets:
+      - mongo_root_pass
+      - mongo_express_admin_pass
+secrets:
+  mongo_root_pass:
+    external: true
+  mongo_express_admin_pass:
+    external: true
+```
