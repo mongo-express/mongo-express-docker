@@ -1,9 +1,21 @@
-mongo:
-    image: mongo
+version: '3.4'
 
-mongoexpress:
-    image: mongo-express-docker
-    ports:
-        - "8081:8081"
-    links:
-        - mongo
+services:
+    mongo:
+        image: mongo:4
+        networks:
+            backend:
+        restart: always
+
+    mongoexpress:
+        image: mongo-express
+        ports:
+            - "8081:8081"
+        depends_on:
+          - mongo
+        restart: always
+        networks:
+            backend:
+
+networks:
+    backend:
