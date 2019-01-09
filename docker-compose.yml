@@ -2,7 +2,7 @@ mongo:
     image: mongo
 
 mongoexpress:
-    image: mongo-express-docker
+    image: mongo-express
     ports:
         - "8081:8081"
     links:
