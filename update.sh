@@ -1,11 +1,9 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-nodeVersion="$(awk '$1 == "FROM" { print $2; exit }' Dockerfile)"
-
-mongoExpressVersion="$(docker run --rm "$nodeVersion" npm show mongo-express version)"
+mongoExpressVersion="$(wget -qO- 'https://registry.npmjs.org/mongo-express' | jq -r '."dist-tags".latest')"
 
 echo "$mongoExpressVersion"
 
