@@ -1,4 +1,6 @@
-FROM node:8-alpine
+# https://nodejs.org/en/about/releases/
+# https://github.com/nodejs/Release#readme
+FROM node:12-alpine3.11
 
 RUN apk add --no-cache bash tini
 
@@ -14,7 +16,10 @@ ENV ME_CONFIG_EDITORTHEME="default" \
 
 ENV MONGO_EXPRESS 0.51.0
 
-RUN npm install mongo-express@$MONGO_EXPRESS
+RUN set -eux; \
+	apk add --no-cache --virtual .me-install-deps git; \
+	npm install mongo-express@$MONGO_EXPRESS; \
+	apk del --no-network .me-install-deps
 
 COPY docker-entrypoint.sh /
 
