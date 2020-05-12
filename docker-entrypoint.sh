@@ -8,7 +8,7 @@ fi
 
 function wait_tcp_port {
     local host="$1" port="$2"
-    local max_tries=5 tries=1
+    local max_tries="$3" tries=1
 
     # see http://tldp.org/LDP/abs/html/devref1.html for description of this syntax.
     while ! exec 6<>/dev/tcp/$host/$port && [[ $tries -lt $max_tries ]]; do
@@ -23,7 +23,7 @@ function wait_tcp_port {
 if [[ "$ME_CONFIG_MONGODB_SERVER" != *,* ]]; then
 	# wait for the mongo server to be available
 	echo Waiting for ${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT:-27017}...
-	wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}"
+	wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}" "${ME_CONFIG_CONNECT_RETRIES:-5}"
 fi
 
 # run mongo-express

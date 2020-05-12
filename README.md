@@ -28,6 +28,7 @@ Environment vairables are passed to the `run` command for configuring a mongo-ex
 	--------------------------------|-----------------|------------
 	ME_CONFIG_BASICAUTH_USERNAME    | ''              | mongo-express web username
 	ME_CONFIG_BASICAUTH_PASSWORD    | ''              | mongo-express web password
+	ME_CONFIG_CONNECT_RETRIES       | 5               | Number of startup connection retry attempts to be made
 	ME_CONFIG_MONGODB_ENABLE_ADMIN  | 'true'          | Enable admin access to all databases. Send strings: `"true"` or `"false"`
 	ME_CONFIG_MONGODB_ADMINUSERNAME | ''              | MongoDB admin username
 	ME_CONFIG_MONGODB_ADMINPASSWORD | ''              | MongoDB admin password
