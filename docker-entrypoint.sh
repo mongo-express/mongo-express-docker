@@ -20,7 +20,7 @@ function wait_tcp_port {
 }
 
 # if ME_CONFIG_MONGODB_SERVER has a comma in it, we're pointing to a replica set (https://github.com/mongo-express/mongo-express-docker/issues/21)
-if [[ "$ME_CONFIG_MONGODB_SERVER" != *,* ]]; then
+if [[ -n "$ME_CONFIG_MONGODB_SERVER" ]] && [[ "$ME_CONFIG_MONGODB_SERVER" != *,* ]]; then
 	# wait for the mongo server to be available
 	echo Waiting for ${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT:-27017}...
 	wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}"
