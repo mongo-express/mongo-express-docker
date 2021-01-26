@@ -8,7 +8,7 @@ fi
 
 function wait_tcp_port {
     local host="$1" port="$2"
-    local max_tries=5 tries=1
+    local max_tries=${ME_CONFIG_MONGODB_SERVER_WAIT_MAX_TRIES:-10} tries=1
 
     # see http://tldp.org/LDP/abs/html/devref1.html for description of this syntax.
     while ! exec 6<>/dev/tcp/$host/$port && [[ $tries -lt $max_tries ]]; do
