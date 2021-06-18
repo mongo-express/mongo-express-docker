@@ -26,7 +26,7 @@ Environment vairables are passed to the `run` command for configuring a mongo-ex
 
 	Name                            | Default         | Description
 	--------------------------------|-----------------|------------
-	ME_CONFIG_MONGODB_URL        	| 'mongomongodb://mongo:27017' | MongoDB connection string
+	ME_CONFIG_MONGODB_URL        	| 'mongodb://mongo:27017' | MongoDB connection string
 	ME_CONFIG_BASICAUTH_USERNAME    | ''              | mongo-express web username
 	ME_CONFIG_BASICAUTH_PASSWORD    | ''              | mongo-express web password
 	ME_CONFIG_MONGODB_ENABLE_ADMIN  | 'true'          | Enable admin access to all databases. Send strings: `"true"` or `"false"`
