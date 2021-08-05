@@ -19,16 +19,28 @@ function wait_tcp_port {
     exec 6>&-
 }
 
+# if ME_CONFIG_MONGODB_URL has a comma in it, we're pointing to a replica set (https://github.com/mongo-express/mongo-express-docker/issues/21)
+if [[ "$ME_CONFIG_MONGODB_URL" != *,* ]]; then
+    work=$ME_CONFIG_MONGODB_URL
+    # Remove the scheme (should be "mongodb://" or "mongodb+srv://").
+    work=${work#*://}
+    # Remove the path component of the URL (should just be a "/").
+    work=${work%%/*}
+    # Remove the userinfo.
+    work=${work#*@}
+    if [[ "$work" = *:* ]]; then
+        # Match the host.
+        host=${work%:*}
+        # Match the port.
+        port=${work#*:}
+    else
+        host=$work
+        port=27017
+    fi
 
-# TODO: Using ME_CONFIG_MONGODB_SERVER is going to be deprecated, a way to parse connection string
-# is required for checking port health
-
-# if ME_CONFIG_MONGODB_SERVER has a comma in it, we're pointing to a replica set (https://github.com/mongo-express/mongo-express-docker/issues/21)
-
-if [[ "$ME_CONFIG_MONGODB_SERVER" != *,* ]]; then
-	# wait for the mongo server to be available
-	echo Waiting for ${ME_CONFIG_MONGODB_SERVER}:${ME_CONFIG_MONGODB_PORT:-27017}...
-	wait_tcp_port "${ME_CONFIG_MONGODB_SERVER}" "${ME_CONFIG_MONGODB_PORT:-27017}" "${ME_CONFIG_CONNECT_RETRIES:-5}"
+    # wait for the mongo server to be available
+    echo "Waiting for $host:$port..."
+    wait_tcp_port "$host" "$port"
 fi
 
 # run mongo-express
