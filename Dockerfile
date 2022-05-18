@@ -1,6 +1,6 @@
 # https://nodejs.org/en/about/releases/
 # https://github.com/nodejs/Release#readme
-FROM node:12-alpine3.15
+FROM node:18-alpine3.15
 
 RUN apk add --no-cache bash tini
 
