@@ -2,7 +2,7 @@
 # https://github.com/nodejs/Release#readme
 FROM node:12-alpine3.15
 
-RUN apk add --no-cache bash tini
+RUN apk add --no-cache bash tini tzdata
 
 EXPOSE 8081
 
