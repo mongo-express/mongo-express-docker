@@ -20,10 +20,7 @@ ENV ME_CONFIG_EDITORTHEME="default" \
 ARG MONGO_REPOSITORY=mongo-express/mongo-express
 ARG MONGO_EXPRESS_TAG=v1.0.0
 ADD https://github.com/${MONGO_REPOSITORY}/archive/refs/tags/${MONGO_EXPRESS_TAG}.tar.gz /app/${MONGO_EXPRESS_TAG}.tar.gz
-RUN set -eux; \
-	apk add --no-cache --virtual .me-install-deps git; \
-	npm install /app/${MONGO_EXPRESS_TAG}.tar.gz; \
-	apk del --no-network .me-install-deps
+RUN npm install /app/${MONGO_EXPRESS_TAG}.tar.gz
 
 COPY docker-entrypoint.sh /
 
