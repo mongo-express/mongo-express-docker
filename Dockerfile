@@ -18,7 +18,7 @@ ENV ME_CONFIG_EDITORTHEME="default" \
 ARG MONGO_REPOSITORY=mongo-express/mongo-express
 ARG MONGO_EXPRESS_REF=master
 
-RUN npm install npm install https://github.com/${MONGO_REPOSITORY}/tree/${MONGO_EXPRESS_REF}/
+RUN npm install https://github.com/${MONGO_REPOSITORY}/tree/${MONGO_EXPRESS_REF}/
 
 COPY docker-entrypoint.sh /
 
