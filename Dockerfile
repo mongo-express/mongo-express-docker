@@ -2,8 +2,6 @@
 # https://github.com/nodejs/Release#readme
 FROM node:18-alpine3.16
 
-RUN apk -U add --no-cache bash tini
-
 RUN mkdir /app
 WORKDIR /app
 
@@ -28,7 +26,7 @@ WORKDIR /app/node_modules/mongo-express
 
 RUN cp config.default.js config.js
 RUN yarn install
-RUN npm run build
+RUN yarn build
 
-ENTRYPOINT [ "tini", "--", "/docker-entrypoint.sh"]
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["mongo-express"]
