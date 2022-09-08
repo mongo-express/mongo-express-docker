@@ -18,9 +18,9 @@ ENV ME_CONFIG_EDITORTHEME="default" \
     VCAP_APP_HOST="0.0.0.0"
 
 ARG MONGO_REPOSITORY=mongo-express/mongo-express
-ARG MONGO_EXPRESS_TAG=v1.0.0
-ADD https://github.com/${MONGO_REPOSITORY}/archive/refs/tags/${MONGO_EXPRESS_TAG}.tar.gz /app/${MONGO_EXPRESS_TAG}.tar.gz
-RUN npm install /app/${MONGO_EXPRESS_TAG}.tar.gz
+ARG MONGO_EXPRESS_REF=master
+
+RUN npm install npm install https://github.com/${MONGO_REPOSITORY}/tree/${MONGO_EXPRESS_REF}/
 
 COPY docker-entrypoint.sh /
 
