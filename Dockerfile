@@ -1,8 +1,8 @@
 # https://nodejs.org/en/about/releases/
 # https://github.com/nodejs/Release#readme
-FROM node:12-alpine3.15
+FROM node:12-alpine3.16
 
-RUN apk add --no-cache bash tini
+RUN apk -U add --no-cache bash tini
 
 EXPOSE 8081
 
