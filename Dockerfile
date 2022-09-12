@@ -33,5 +33,5 @@ RUN cp config.default.js config.js
 RUN yarn install
 RUN npm run build
 
-ENTRYPOINT [ "tini", "--", "/docker-entrypoint.sh"]
+ENTRYPOINT [ "/sbin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["mongo-express"]
