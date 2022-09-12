@@ -24,6 +24,7 @@ RUN set -eux; \
 	apk del --no-network .me-install-deps
 
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /app/node_modules/mongo-express
 
