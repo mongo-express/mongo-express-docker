@@ -2,11 +2,7 @@
 # https://github.com/nodejs/Release#readme
 FROM node:18-alpine3.16
 
-RUN apk -U add --no-cache bash tini
-
 WORKDIR /app
-
-EXPOSE 8081
 
 # override some config defaults with values that will work better for docker
 ENV ME_CONFIG_EDITORTHEME="default" \
@@ -27,8 +23,13 @@ RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /app/node_modules/mongo-express
 
-RUN yarn install
-RUN npm run build
+RUN apk -U add --no-cache \
+    bash \
+    # grab tini for signal processing and zombie killing
+    tini \
+    && yarn install
+    # && yarn run build     # prepublish already run build
 
+EXPOSE 8081
 ENTRYPOINT [ "/sbin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["mongo-express"]
