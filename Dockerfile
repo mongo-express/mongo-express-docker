@@ -4,7 +4,6 @@ FROM node:18-alpine3.16
 
 RUN apk -U add --no-cache bash tini
 
-RUN mkdir /app
 WORKDIR /app
 
 EXPOSE 8081
