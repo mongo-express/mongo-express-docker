@@ -28,7 +28,6 @@ RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /app/node_modules/mongo-express
 
-RUN cp config.default.js config.js
 RUN yarn install
 RUN npm run build
 
