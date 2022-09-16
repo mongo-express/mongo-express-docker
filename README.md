@@ -9,7 +9,7 @@ mongo-express is a web-based MongoDB admin interface written in Node.js, Express
 # How to use this image
 
 ```console
-$ docker run --link some_mongo_container:mongo -p 8081:8081 mongo-express
+$ docker run --link some_mongo_container:mongo -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" mongo-express
 ```
 
 Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
@@ -22,18 +22,15 @@ JSON documents are parsed through a javascript virtual machine, so the web inter
 
 # Configuration
 
-Environment vairables are passed to the `run` command for configuring a mongo-express container.
+Environment variables are passed to the `run` command for configuring a mongo-express container.
 
 	Name                            | Default         | Description
 	--------------------------------|-----------------|------------
+	ME_CONFIG_MONGODB_URL        	| 'mongodb://mongo:27017' | MongoDB connection string
 	ME_CONFIG_BASICAUTH_USERNAME    | ''              | mongo-express web username
 	ME_CONFIG_BASICAUTH_PASSWORD    | ''              | mongo-express web password
 	ME_CONFIG_CONNECT_RETRIES       | 5               | Number of startup connection retry attempts to be made
 	ME_CONFIG_MONGODB_ENABLE_ADMIN  | 'true'          | Enable admin access to all databases. Send strings: `"true"` or `"false"`
-	ME_CONFIG_MONGODB_ADMINUSERNAME | ''              | MongoDB admin username
-	ME_CONFIG_MONGODB_ADMINPASSWORD | ''              | MongoDB admin password
-	ME_CONFIG_MONGODB_PORT          | 27017           | MongoDB port
-	ME_CONFIG_MONGODB_SERVER        | 'mongo'         | MongoDB container name
 	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default'       | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
 	ME_CONFIG_REQUEST_SIZE          | '100kb'         | Maximum payload size. CRUD operations above this size will fail in [body-parser](https://www.npmjs.com/package/body-parser).
 	ME_CONFIG_SITE_BASEURL          | '/'             | Set the baseUrl to ease mounting at a subdirectory. Remember to include a leading and trailing slash.
@@ -57,9 +54,36 @@ The following are only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 		--name mongo-express \
 		--link web_db_1:mongo \
 		-p 8081:8081 \
+		-e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
 		-e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
 		-e ME_CONFIG_BASICAUTH_USERNAME="user" \
 		-e ME_CONFIG_BASICAUTH_PASSWORD="fairly long password" \
 		mongo-express
 
 This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
+
+# How to build this image
+
+```console
+docker build --tag mongo-express .
+```
+
+## Custom tag
+
+`MONGO_EXPRESS_TAG` can be substituted with the tag you want to build. ie: 
+
+```console
+docker build \
+	--build-arg MONGO_EXPRESS_TAG=v1.2.3-rc \
+	--tag mongo-express .
+```
+
+## Custom Repository
+
+`MONGO_REPOSITORY` can be substituted with a forked version of Mongo Express. ie:
+
+```console
+docker build \
+	--build-arg MONGO_REPOSITORY=OtherUser/mongo_express \
+	--tag mongo-express .
+```
