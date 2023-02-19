@@ -14,7 +14,7 @@ ENV ME_CONFIG_EDITORTHEME="default" \
     ME_CONFIG_BASICAUTH_PASSWORD="" \
     VCAP_APP_HOST="0.0.0.0"
 
-ENV MONGO_EXPRESS 1.0.0-alpha.4
+ENV MONGO_EXPRESS 1.0.1
 
 RUN set -eux; \
 	apk add --no-cache --virtual .me-install-deps git; \
