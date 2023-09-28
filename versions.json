@@ -1,0 +1,11 @@
+{
+    "1.0": {
+        "version": "1.0.0",
+        "variants": [
+            "18-alpine3.17",
+            "18-alpine3.18",
+            "20-alpine3.17",
+            "20-alpine3.18"
+          ]
+    }
+}
