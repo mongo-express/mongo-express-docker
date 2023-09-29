@@ -1,13 +1,13 @@
 {
-    "1.0": {
-        "version": "1.0.0",
-        "node": "18",
-        "alpine": "3.17",
-        "variants": [
-            "18-alpine3.17",
-            "18-alpine3.18",
-            "20-alpine3.17",
-            "20-alpine3.18"
-          ]
-    }
+  "1.0": {
+    "alpine": "3.17",
+    "node": "18",
+    "variants": [
+      "20-alpine3.18",
+      "20-alpine3.17",
+      "18-alpine3.18",
+      "18-alpine3.17"
+    ],
+    "version": "1.0.0"
+  }
 }
