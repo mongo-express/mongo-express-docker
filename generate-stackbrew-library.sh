@@ -107,13 +107,13 @@ for version; do
 		else
 			if [ "${alpine}" = "alpine${defaultAlpine}" ]; then
 				variantAliases=( "${versionAliasesCopy[@]/%/-$node}" "${versionAliasesCopy[@]/%/-$variant}" )
-				echo "${variantAliases[*]}"
 			else
 				variantAliases=( "${versionAliasesCopy[@]/%/-$variant}" )
 			fi
 		fi
 
 		cat <<-EOE
+
 			Tags: $(join ', ' "${variantAliases[@]}")
 			Architectures: amd64, arm64v8
 			GitCommit: $commit
