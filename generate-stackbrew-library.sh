@@ -81,8 +81,9 @@ for version; do
 		*) versionAliases+=( $version ) ;;
 	esac
 	# ex: 9 or latest
+	# shellcheck disable=SC2206
 	versionAliases+=(
-		"${aliases[$version]:-}"
+		${aliases[$version]:-}
 	)
 
 	for variant in "${variants[@]}"; do
