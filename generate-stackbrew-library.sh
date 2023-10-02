@@ -46,7 +46,8 @@ commit="$(git log -1 --format='format:%H')"
 cat <<-EOH
 # this file is generated via https://github.com/mongo-express/mongo-express-docker/blob/$commit/$self
 
-Maintainers: Nick Cox <nickcox1008@gmail.com> (@knickers)
+Maintainers: Nick Cox <nickcox1008@gmail.com> (@knickers),
+             John Steel <john@jskw.dev> (@BlackthornYugen)
 GitRepo: https://github.com/mongo-express/mongo-express-docker.git
 GitCommit: $commit
 EOH
@@ -55,7 +56,7 @@ EOH
 join() {
 	local sep="$1"; shift
 	local out; printf -v out "${sep//%/%%}%s" "$@"
-	echo "${out#$sep}"
+	echo "${out#"$sep"}"
 }
 
 for version; do
@@ -81,7 +82,7 @@ for version; do
 	esac
 	# ex: 9 or latest
 	versionAliases+=(
-		${aliases[$version]:-}
+		"${aliases[$version]:-}"
 	)
 
 	for variant in "${variants[@]}"; do
@@ -107,13 +108,13 @@ for version; do
 		else
 			if [ "${alpine}" = "alpine${defaultAlpine}" ]; then
 				variantAliases=( "${versionAliasesCopy[@]/%/-$node}" "${versionAliasesCopy[@]/%/-$variant}" )
-				echo "${variantAliases[*]}"
 			else
 				variantAliases=( "${versionAliasesCopy[@]/%/-$variant}" )
 			fi
 		fi
 
 		cat <<-EOE
+
 			Tags: $(join ', ' "${variantAliases[@]}")
 			Architectures: amd64, arm64v8
 			GitCommit: $commit
