@@ -8,8 +8,8 @@ mongo-express is a web-based MongoDB admin interface written in Node.js, Express
 
 # How to use this image
 
-```console
-$ docker run --link some_mongo_container:mongo -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" mongo-express
+```bash
+docker run --rm --link some_mongo_container:mongo -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" mongo-express
 ```
 
 Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
@@ -61,28 +61,18 @@ The following are only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 
 This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
 
-# How to build this image
+# How to build and run this image locally
 
-```console
+Start a mongodb server:
+
+```bash
+docker run --rm -p 27017:27017 mongo:latest
+```
+
+Build and run the mongo-express image:
+
+```bash
 docker build --tag mongo-express .
-```
 
-## Custom tag
-
-`MONGO_EXPRESS_TAG` can be substituted with the tag you want to build. ie: 
-
-```console
-docker build \
-	--build-arg MONGO_EXPRESS_TAG=v1.2.3-rc \
-	--tag mongo-express .
-```
-
-## Custom Repository
-
-`MONGO_REPOSITORY` can be substituted with a forked version of Mongo Express. ie:
-
-```console
-docker build \
-	--build-arg MONGO_REPOSITORY=OtherUser/mongo_express \
-	--tag mongo-express .
+docker run --rm -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://host.docker.internal:27017" mongo-express
 ```
