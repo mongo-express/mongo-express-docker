@@ -72,7 +72,11 @@ docker run --rm -p 27017:27017 mongo:latest
 Build and run the mongo-express image:
 
 ```bash
+# Build
 docker build --tag mongo-express .
+## or to build with a specific version of mongo-express
+docker build --build-arg MONGO_EXPRESS_VERSION=v1.0.2 --tag mongo-express .
 
+# Run
 docker run --rm -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://host.docker.internal:27017" mongo-express
 ```
