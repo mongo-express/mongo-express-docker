@@ -48,7 +48,7 @@ for version; do
 		echo "processing $dir ..."
 
 		cp -a docker-entrypoint.sh "$dir/"
-		gsed -i "2s|^|# This file is auto-generated. Do not edit directly!\n|" "$dir/docker-entrypoint.sh"
+		sed -i "2s|^|# This file is auto-generated. Do not edit directly!\n|" "$dir/docker-entrypoint.sh"
 
 		template='Dockerfile.template'
 

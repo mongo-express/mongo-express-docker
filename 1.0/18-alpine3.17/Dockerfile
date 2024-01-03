@@ -6,7 +6,7 @@
 
 # https://nodejs.org/en/about/releases/
 # https://github.com/nodejs/Release#readme
-FROM node:18-alpine3.17
+FROM node:18-alpine3.17 as builder
 
 # override some config defaults with values that will work better for docker
 ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
@@ -16,19 +16,26 @@ ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
 
 ARG MONGO_EXPRESS_VERSION=v1.0.2
 
+RUN apk -U add bash git
+RUN git clone --depth 1 --branch $MONGO_EXPRESS_VERSION https://github.com/mongo-express/mongo-express.git /app
+WORKDIR /app
+
+RUN rm -rf .git
+RUN yarn install
+RUN yarn build
+
+FROM node:18-alpine3.17
+
 RUN set -eux; \
     apk -U add --no-cache \
         bash \
         # grab tini for signal processing and zombie killing
-        tini \
-        # git used to get tagged version
-        git ; \
-    git clone --depth 1 --branch $MONGO_EXPRESS_VERSION https://github.com/mongo-express/mongo-express.git /app
+        tini
+
+# Copy app from builder image
+COPY --from=builder /app /app
 
 WORKDIR /app
-
-RUN yarn install
-RUN yarn build
 
 EXPOSE 8081
 COPY docker-entrypoint.sh /

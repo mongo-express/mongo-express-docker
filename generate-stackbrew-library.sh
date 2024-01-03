@@ -46,9 +46,11 @@ commit="$(git log -1 --format='format:%H')"
 cat <<-EOH
 # this file is generated via https://github.com/mongo-express/mongo-express-docker/blob/$commit/$self
 
-Maintainers: Nick Cox <nickcox1008@gmail.com> (@knickers)
+Maintainers: Nick Cox <nickcox1008@gmail.com> (@knickers),
+             John Steel <john@jskw.dev> (@BlackthornYugen)
 GitRepo: https://github.com/mongo-express/mongo-express-docker.git
 GitCommit: $commit
+
 EOH
 
 # prints "$2$1$3$1...$N"
@@ -107,7 +109,6 @@ for version; do
 		else
 			if [ "${alpine}" = "alpine${defaultAlpine}" ]; then
 				variantAliases=( "${versionAliasesCopy[@]/%/-$node}" "${versionAliasesCopy[@]/%/-$variant}" )
-				echo "${variantAliases[*]}"
 			else
 				variantAliases=( "${versionAliasesCopy[@]/%/-$variant}" )
 			fi
@@ -118,6 +119,7 @@ for version; do
 			Architectures: amd64, arm64v8
 			GitCommit: $commit
 			Directory: $dir
+
 		EOE
 	done
 done
