@@ -8,13 +8,12 @@
 # https://github.com/nodejs/Release#readme
 FROM node:18-alpine3.17 as builder
 
-ARG MONGO_EXPRESS_VERSION=v1.0.2
+ARG MONGO_EXPRESS_VERSION=release/v1.0.2
 
 RUN apk -U add git
 RUN git clone --depth 1 --branch $MONGO_EXPRESS_VERSION https://github.com/mongo-express/mongo-express.git /app
 WORKDIR /app
 
-RUN npm version "$(git describe --tags --dirty)" --no-git-tag-version
 RUN yarn install
 RUN yarn build
 
