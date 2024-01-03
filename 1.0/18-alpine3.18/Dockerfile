@@ -8,12 +8,6 @@
 # https://github.com/nodejs/Release#readme
 FROM node:18-alpine3.18 as builder
 
-# override some config defaults with values that will work better for docker
-ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
-    ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
-    ME_CONFIG_SITE_SESSIONSECRET="secret" \
-    VCAP_APP_HOST="0.0.0.0"
-
 ARG MONGO_EXPRESS_VERSION=v1.0.2
 
 RUN apk -U add git
@@ -46,6 +40,8 @@ RUN find . -maxdepth 1 -type f ! \( \
 
 FROM node:18-alpine3.18
 
+ARG MONGO_EXPRESS_VERSION=v1.0.2
+
 RUN set -eux; \
     apk -U add --no-cache \
         bash \
@@ -54,6 +50,12 @@ RUN set -eux; \
 
 # Copy app from builder image
 COPY --from=builder /app /app
+
+# override some config defaults with values that will work better for docker
+ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
+    ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
+    ME_CONFIG_SITE_SESSIONSECRET="secret" \
+    VCAP_APP_HOST="0.0.0.0"
 
 WORKDIR /app
 
