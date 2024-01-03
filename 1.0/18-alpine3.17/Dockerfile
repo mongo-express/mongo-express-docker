@@ -18,25 +18,26 @@ RUN npm version "$(git describe --tags --dirty)" --no-git-tag-version
 RUN yarn install
 RUN yarn build
 
-# Remove all files and folders that don't match the desired pattern
+RUN echo "The following folders were removed to save space:" > removed-dirs.log
 RUN find . -maxdepth 1 -type d ! \( \
     -name '.' -o \
     -name '..' -o \
     -name '.yarn' -o \
     -name 'lib' -o \
+    -name 'css' -o \
     -name 'node_modules' -o \
+    -name 'build' -o \
     -name 'public' \
-    \) -exec rm -rf {} + -print
+    \) -exec rm -rf {} + -print | tee -a removed-dirs.log
+RUN echo "The following files were removed to save space:" > removed-files.log
 RUN find . -maxdepth 1 -type f ! \( \
     -name '.yarnrc.yml' -o \
-    -name 'app.js' -o \
-    -name 'build-assets.json' -o \
-    -name 'config.default.js' -o \
-    -name 'package.json' -o \
-    -name 'webpack.config.js' -o \
+    -name '*.json' -o \
+    -name '*.js' -o \
+    -name '*.log' -o \
     -name 'yarn.lock' -o \
     -name 'LICENSE.md' \
-    \) -print
+    \) -delete -print | tee -a removed-files.log
 
 FROM node:18-alpine3.17
 
