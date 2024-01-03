@@ -40,9 +40,9 @@ RUN find . -maxdepth 1 -type f ! \( \
     -name 'config.default.js' -o \
     -name 'package.json' -o \
     -name 'webpack.config.js' -o \
-    -name 'yarn.lock' \
+    -name 'yarn.lock' -o \
     -name 'LICENSE.md' \
-    \) -delete -print
+    \) -print
 
 FROM node:20-alpine3.17
 
