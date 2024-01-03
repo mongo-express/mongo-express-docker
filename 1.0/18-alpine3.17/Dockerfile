@@ -6,25 +6,40 @@
 
 # https://nodejs.org/en/about/releases/
 # https://github.com/nodejs/Release#readme
+FROM node:18-alpine3.17 as builder
+
+ARG MONGO_EXPRESS_VERSION=release/v1.0.2
+
+RUN apk -U add git
+RUN git clone --depth 1 --branch $MONGO_EXPRESS_VERSION https://github.com/mongo-express/mongo-express.git /app
+WORKDIR /app
+
+RUN yarn install
+RUN yarn build
+
 FROM node:18-alpine3.17
 
-# override some config defaults with values that will work better for docker
-ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
-    ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
-    VCAP_APP_HOST="0.0.0.0"
-
-ENV MONGO_EXPRESS_VERSION=1.0.0
+ARG MONGO_EXPRESS_VERSION=v1.0.2
 
 RUN set -eux; \
-    yarn add mongo-express@${MONGO_EXPRESS_VERSION}; \
     apk -U add --no-cache \
         bash \
         # grab tini for signal processing and zombie killing
         tini
 
-WORKDIR /node_modules/mongo-express
+# Copy app from builder image
+COPY --from=builder /app /app
+
+# override some config defaults with values that will work better for docker
+ENV ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
+    ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
+    ME_CONFIG_SITE_SESSIONSECRET="secret" \
+    VCAP_APP_HOST="0.0.0.0"
+
+WORKDIR /app
 
 EXPOSE 8081
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT [ "/sbin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["mongo-express"]
