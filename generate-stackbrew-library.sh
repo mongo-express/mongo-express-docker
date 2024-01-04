@@ -57,7 +57,7 @@ EOH
 join() {
 	local sep="$1"; shift
 	local out; printf -v out "${sep//%/%%}%s" "$@"
-	echo "${out#$sep}"
+	echo "${out#"$sep"}"
 }
 
 for version; do
@@ -82,6 +82,7 @@ for version; do
 		*) versionAliases+=( $version ) ;;
 	esac
 	# ex: 9 or latest
+	# shellcheck disable=SC2206
 	versionAliases+=(
 		${aliases[$version]:-}
 	)
@@ -115,6 +116,7 @@ for version; do
 		fi
 
 		cat <<-EOE
+
 			Tags: $(join ', ' "${variantAliases[@]}")
 			Architectures: amd64, arm64v8
 			GitCommit: $commit
