@@ -16,11 +16,12 @@ RUN set -eux; \
 
 WORKDIR /app
 
+ARG MONGO_EXPRESS_REPOSITORY=mongo-express/mongo-express
 ARG MONGO_EXPRESS_VERSION=release/v1.0.2
 
 RUN set -eux; \
     apk add --no-cache --virtual .me-fetch-deps git; \
-    git clone --depth 1 --branch "$MONGO_EXPRESS_VERSION" -c advice.detachedHead=false https://github.com/mongo-express/mongo-express.git .; \
+    git clone --depth 1 --branch "$MONGO_EXPRESS_VERSION" -c advice.detachedHead=false https://github.com/$MONGO_EXPRESS_REPOSITORY.git .; \
     export DISABLE_V8_COMPILE_CACHE=1; \
     yarn install; \
     yarn build; \
