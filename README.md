@@ -29,6 +29,7 @@ Environment variables are passed to the `run` command for configuring a mongo-ex
 	ME_CONFIG_MONGODB_URL        	| 'mongodb://mongo:27017' | MongoDB connection string
 	ME_CONFIG_BASICAUTH_USERNAME    | ''              | mongo-express web username
 	ME_CONFIG_BASICAUTH_PASSWORD    | ''              | mongo-express web password
+	ME_CONFIG_CONNECT_RETRIES       | 5               | Number of startup connection retry attempts to be made
 	ME_CONFIG_MONGODB_ENABLE_ADMIN  | 'true'          | Enable admin access to all databases. Send strings: `"true"` or `"false"`
 	ME_CONFIG_OPTIONS_EDITORTHEME   | 'default'       | mongo-express editor color theme, [more here](http://codemirror.net/demo/theme.html)
 	ME_CONFIG_REQUEST_SIZE          | '100kb'         | Maximum payload size. CRUD operations above this size will fail in [body-parser](https://www.npmjs.com/package/body-parser).
