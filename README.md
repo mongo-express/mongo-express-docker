@@ -14,11 +14,31 @@ $ docker run --link some_mongo_container:mongo -p 8081:8081 -e ME_CONFIG_MONGODB
 
 Then you can hit `http://localhost:8081` or `http://host-ip:8081` in your browser.
 
+Some alternatives for the `ME_CONFIG_MONGODB_URL` environment variable:
+- `mongodb://host.docker.internal:27017`
+- `mongodb://host.containers.internal:27017`
+
 ## Security Notice
 
 JSON documents are parsed through a javascript virtual machine, so the web interface can be used to execute malicious javascript on a server.
 
 **mongo-express should only be used privately for development purposes.**
+
+# Build
+Build the mongo-express image:
+```console
+docker build --tag mongo-express .
+```
+
+Build with a specific version of mongo-express:
+```console
+docker build --build-arg MONGO_EXPRESS_VERSION=release/v1.0.2 --tag mongo-express .
+```
+
+`MONGO_EXPRESS_REPOSITORY` can be substituted with a forked version of mongo-express:
+```console
+docker build --build-arg MONGO_EXPRESS_REPOSITORY=OtherUser/mongo_express --tag mongo-express .
+```
 
 # Configuration
 
@@ -61,29 +81,3 @@ The following are only needed if `ME_CONFIG_MONGODB_ENABLE_ADMIN` is **"false"**
 		mongo-express
 
 This example links to a container name typical of `docker-compose`, changes the editor's color theme, and enables basic authentication.
-
-# How to build this image
-
-```console
-docker build --tag mongo-express .
-```
-
-## Custom tag
-
-`MONGO_EXPRESS_TAG` can be substituted with the tag you want to build. ie: 
-
-```console
-docker build \
-	--build-arg MONGO_EXPRESS_TAG=v1.2.3-rc \
-	--tag mongo-express .
-```
-
-## Custom Repository
-
-`MONGO_REPOSITORY` can be substituted with a forked version of Mongo Express. ie:
-
-```console
-docker build \
-	--build-arg MONGO_REPOSITORY=OtherUser/mongo_express \
-	--tag mongo-express .
-```
