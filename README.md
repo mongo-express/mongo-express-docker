@@ -25,17 +25,21 @@ JSON documents are parsed through a javascript virtual machine, so the web inter
 **mongo-express should only be used privately for development purposes.**
 
 # Build
-Build the mongo-express image:
+Build the mongo-express image using `Dockerfile` and `docker-entrypoint.sh` files.
+
+In below commands go to the folder (e.g. `cd 1.0/20-alpine3.18`) or replace final `.` with folder path (e.g. `1.0/20-alpine3.18`).
+
+#### Build the mongo-express image:
 ```console
 docker build --tag mongo-express .
 ```
 
-Build with a specific version of mongo-express:
+#### Build with a specific version of mongo-express:
 ```console
 docker build --build-arg MONGO_EXPRESS_VERSION=release/v1.0.2 --tag mongo-express .
 ```
 
-`MONGO_EXPRESS_REPOSITORY` can be substituted with a forked version of mongo-express:
+#### Build with a specific (forked) repository of mongo-express:
 ```console
 docker build --build-arg MONGO_EXPRESS_REPOSITORY=OtherUser/mongo_express --tag mongo-express .
 ```
