@@ -26,7 +26,7 @@ upstreamVersions=$(wget -qO- 'https://registry.npmjs.org/mongo-express' | jq -r 
 for version in "${versions[@]}"; do
 	export version
 
-    versionPattern="^${version/\./\\.}\.\d*$"
+    versionPattern="^${version/\./\\.}\.[0-9]*$"
     filteredVersions=($(printf "%s\n" ${upstreamVersions[*]} | grep -E "${versionPattern}"))
     fullVersion="${filteredVersions[${#filteredVersions[@]}-1]}"
 
