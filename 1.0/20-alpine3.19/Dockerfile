@@ -6,7 +6,7 @@
 
 # https://nodejs.org/en/about/releases/
 # https://github.com/nodejs/Release#readme
-FROM node:20-alpine3.17
+FROM node:20-alpine3.19
 
 RUN set -eux; \
     apk add --no-cache \
