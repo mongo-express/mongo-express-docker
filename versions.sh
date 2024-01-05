@@ -6,8 +6,8 @@ supportedNodeVersions=(
 	18
 )
 supportedAlpineVersions=(
+	3.19
 	3.18
-	3.17
 )
 defaultNodeVersion="${supportedNodeVersions[0]}"
 defaultAlpineVersion="${supportedAlpineVersions[0]}"
