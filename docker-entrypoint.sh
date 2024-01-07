@@ -40,7 +40,7 @@ if [[ "$ME_CONFIG_MONGODB_URL" != *,* ]]; then
 
     # wait for the mongo server to be available
     echo "Waiting for $host:$port..."
-    wait_tcp_port "$host" "$port"
+    wait_tcp_port "$host" "$port" "${ME_CONFIG_CONNECT_RETRIES:-10}"
 fi
 
 # run mongo-express
