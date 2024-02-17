@@ -8,6 +8,8 @@ mongo-express is a web-based MongoDB admin interface written in Node.js, Express
 
 # How to use this image
 
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/mongo-express/mongo-express-docker/master/docker-compose.yml)
+
 ```console
 $ docker run --link some_mongo_container:mongo -p 8081:8081 -e ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" mongo-express
 ```

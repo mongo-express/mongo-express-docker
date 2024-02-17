@@ -1,14 +1,16 @@
-version: '3.3'
+version: '3.8'
 
 services:
-    mongo:
-        image: mongo
+  mongo:
+    image: mongo:4
+    restart: always
 
-    mongoexpress:
-        image: mongo-express
-        ports:
-            - "8081:8081"
-        links:
-            - mongo
-        environment: 
-            - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+  mongoexpress:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment: 
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+    depends_on:
+      - mongo
+    restart: always
