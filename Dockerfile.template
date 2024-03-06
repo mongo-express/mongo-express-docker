@@ -19,6 +19,8 @@ RUN set -eux; \
     export DISABLE_V8_COMPILE_CACHE=1; \
     yarn install; \
     yarn build; \
+    yarn remove --all; \
+    yarn workspaces focus --production; \
     apk del --no-network .me-fetch-deps; \
     rm -rf .git* ~/.cache ~/.yarn
 
