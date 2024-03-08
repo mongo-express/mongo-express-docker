@@ -21,6 +21,7 @@ RUN set -eux; \
     yarn build; \
     yarn remove --all; \
     yarn workspaces focus --production; \
+    yarn cache clean; \
     apk del --no-network .me-fetch-deps; \
     rm -rf .git* ~/.cache ~/.yarn
 
