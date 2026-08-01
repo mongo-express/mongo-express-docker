@@ -2,12 +2,12 @@
 set -Eeuo pipefail
 
 supportedNodeVersions=(
+	24
 	22
-	20
 )
 supportedAlpineVersions=(
+	3.24
 	3.22
-	3.21
 )
 defaultNodeVersion="${supportedNodeVersions[0]}"
 defaultAlpineVersion="${supportedAlpineVersions[0]}"

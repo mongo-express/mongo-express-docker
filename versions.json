@@ -1,12 +1,12 @@
 {
   "1.0": {
-    "alpine": "3.21",
-    "node": "20",
+    "alpine": "3.22",
+    "node": "22",
     "variants": [
-      "22-alpine3.22",
-      "22-alpine3.21",
-      "20-alpine3.22",
-      "20-alpine3.21"
+      "24-alpine3.24",
+      "24-alpine3.22",
+      "22-alpine3.24",
+      "22-alpine3.22"
     ],
     "version": "1.0.2"
   }
