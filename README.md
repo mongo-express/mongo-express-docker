@@ -29,7 +29,7 @@ JSON documents are parsed through a javascript virtual machine, so the web inter
 # Build
 Build the mongo-express image using `Dockerfile` and `docker-entrypoint.sh` files.
 
-In below commands go to the folder (e.g. `cd 1.0/20-alpine3.18`) or replace final `.` with folder path (e.g. `1.0/20-alpine3.18`).
+In below commands go to the folder (e.g. `cd 1.0/24-alpine3.24`) or replace final `.` with folder path (e.g. `1.0/24-alpine3.24`).
 
 #### Build the mongo-express image:
 ```console
